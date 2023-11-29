@@ -59,7 +59,7 @@ include('includes/header.php');
       <br>
     </div>
     <div class="notification_button">
-      <button onclick="window.location.href='mailto:ledat.fake@gmail.com'">Liên hệ với chúng tôi qua Email</button>
+      <button onclick="window.location.href='mailto:thuongngo@gmail.com'">Liên hệ với chúng tôi qua Email</button>
     </div>
   </div>
 

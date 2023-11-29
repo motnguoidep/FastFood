@@ -8,7 +8,9 @@ $fetch_edit = mysqli_fetch_array($edit_product);
         <table align="center" width="100%">
             <tr>
                 <td colspan="7">
-                    <h1>Sửa thông tin sản phẩm</h1>
+                    <h1>
+                    <img  width="5%" src="https://jollibee.com.vn/static/version1699974795/frontend/Jollibee/default/vi_VN/images/logo.png" alt="">    
+                    Sửa thông tin sản phẩm</h1>
                     <div class="border_bottom">
 
                     </div>

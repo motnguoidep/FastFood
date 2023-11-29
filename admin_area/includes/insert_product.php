@@ -3,18 +3,20 @@
         <table align="center" width="100%">
             <tr>
                 <td colspan="7">
-                    <h1>Thêm Sản Phẩm Mới</h1>
+                    
+                    <h2>
+                    <img  width="5%" src="https://jollibee.com.vn/static/version1699974795/frontend/Jollibee/default/vi_VN/images/logo.png" alt="">    THÊM SẢN PHẨM</h2>
                     <div class="border_bottom">
 
                     </div>
                 </td>
             </tr>
             <tr>
-                <td><b>Tên Sản Phẩm</b></td>
-                <td><input type="text" name="product_title" size="60"  value="" required></td>
+                <td class="red_color"> <b>Tên Sản Phẩm</b></td>
+                <td ><input  type="text" name="product_title" size="60"  value="" required></td>
             </tr>
             <tr>
-                <td><b>Danh Mục Sản Phẩm</b></td>
+                <td class="red_color"><b>Danh Mục Sản Phẩm</b></td>
                 <td>
                     <select name="product_cat" id="">
                         <!-- <option value="">Chọn một danh mục</option> -->
@@ -32,7 +34,7 @@
                 </td>
             </tr>
             <tr>
-                <td><b>Thương Hiệu Sản Phẩm : </b></td>
+                <td class="red_color"><b>Thương Hiệu Sản Phẩm </b></td>
                 <td>
                     <select name="product_brand" id="">
                         <!-- <option value="">Chọn một thương hiệu</option> -->
@@ -50,34 +52,113 @@
                 </td>
             </tr>
             <tr>
-                <td><b>Hình Ảnh Sản Phẩm : </b></td>
+                <td class="red_color"><b>Hình Ảnh Sản Phẩm</b></td>
                 <td><input type="file" name="product_image" required />
                 <p class="error_image"></p>
             </td>
                 
             </tr>
             <tr>
-                <td><b>Giá Sản Phẩm : </b></td>
+                <td class="thuong red_color"><b>Giá Sản Phẩm </b></td>
                 <td><input type="number" min=1 value="1" name="product_price"  id="" required></td>
             </tr>
             <tr>
-                <td><b>Số Lượng Sản Phẩm : </b></td>
+                <td class="red_color"><b>Số Lượng Sản Phẩm </b></td>
                 <td><input type="number" min=1 value="1" name="product_soluong" required id=""></td>
             </tr>
             <tr>
-                <td valign="top"><b>Mô tả bản phẩm</b></td>
+                <td class="red_color" valign="top"><b>Mô tả bản phẩm</b></td>
                 <td><textarea name="product_desc" rows="10"></textarea></td>
             </tr>
-            <tr>
-                <td><b>Từ Khoá Tìm Kiếm Sản Phẩm : </b></td>
+            <!-- <tr>
+                <td><b>Tìm Kiếm Sản Phẩm</b></td>
                 <td><input type="text" name="product_keywords"  id=""></td>
-            </tr>
+            </tr> -->
             <tr>
-                <td colspan="7"><input type="submit" name="insert_post" value="Thêm Sản Phẩm Mới" id=""></td>
+                <td colspan="7"><input type="submit" name="insert_post" value="Thêm" id="thuong"></td>
             </tr>
         </table>
     </form>
 </div>
+<style>
+    
+
+
+h2 {
+    color: #c00000;
+}
+.red_color{
+    color: #c00000;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    padding: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #ccc; /* Add a bottom border for input separation */
+}
+
+input[type="file"] {
+    margin-top: 5px; /* Adjust margin for better spacing */
+}
+
+input[type="submit"] {
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    float: right; /* Move the button to the right */
+    margin-top: 10px; /* Adjust the top margin as needed */
+}
+input[type="submit"]:hover {
+    background-color: #c00000;
+}
+/* Style for the Mô tả bản phẩm section */
+td[valign="top"] {
+    vertical-align: top;
+}
+
+textarea[name="product_desc"] {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid #ccc; /* Add a border for the textarea */
+    border-radius: 4px;
+    outline: none;
+}
+
+/* Optional: Add a box shadow for a subtle effect */
+textarea[name="product_desc"]:focus {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#thuong {
+    padding: 30px 30px;
+    background-color: #c00000;
+    border: none;
+    padding: 10px 20px;
+}
+.border_bottom{
+    background-color: #c00000;
+}
+
+
+</style>
 <!-- Thêm sản phẩm mới -->
 <?php
 if (isset($_POST['insert_post'])) {

@@ -1,95 +1,95 @@
-
-
-
-
 <?php
-$con = mysqli_connect("localhost","root","","fastfood");
+$con = mysqli_connect("localhost", "root", "", "fastfood");
 /*kết nối với database*/
-if(mysqli_connect_errno()){
+if (mysqli_connect_errno()) {
   /*nếu kết nối được thì thông báo*/
-    echo "Kết nối được thiết lập" . mysqli_connect_error();
+  echo "Kết nối được thiết lập" . mysqli_connect_error();
 }
 
 /*hàm lấy địa chỉ ip*/
-function get_ip(){
-  if(!empty($_SERVER['HTTP_CLIENT_IP'])){
-      //ip from share internet
-      $ip = $_SERVER['HTTP_CLIENT_IP'];
-  }elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-      //ip pass from proxy
-      $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-  }else{
-      $ip = $_SERVER['REMOTE_ADDR'];
+function get_ip()
+{
+  if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    //ip from share internet
+    $ip = $_SERVER['HTTP_CLIENT_IP'];
+  } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    //ip pass from proxy
+    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+  } else {
+    $ip = $_SERVER['REMOTE_ADDR'];
   }
   return $ip;
 }
 
 /*show  categories */
-function getCats(){
-    
-    global $con;
+function getCats()
+{
 
-    $get_cats = "select * from categories";
+  global $con;
 
-    $run_cats = mysqli_query($con, $get_cats);
+  $get_cats = "select * from categories";
 
-    while($row_cats=mysqli_fetch_array($run_cats)){
-      $cat_id = $row_cats['cat_id'];
-      $cat_title = $row_cats['cat_title'];
-      echo "<li><a href='index.php?cat=$cat_id'>$cat_title</a></li>";
-    }
+  $run_cats = mysqli_query($con, $get_cats);
+
+  while ($row_cats = mysqli_fetch_array($run_cats)) {
+    $cat_id = $row_cats['cat_id'];
+    $cat_title = $row_cats['cat_title'];
+    echo "<li><a href='index.php?cat=$cat_id'>$cat_title</a></li>";
+  }
 }
 
 /*show brand*/
-function getBrands(){
-            global $con;
-            $get_brands = "select * from brands";
-            $run_brands = mysqli_query($con, $get_brands);
+function getBrands()
+{
+  global $con;
+  $get_brands = "select * from brands";
+  $run_brands = mysqli_query($con, $get_brands);
 
-            while($row_brands = mysqli_fetch_array($run_brands)){
-              $brand_title = $row_brands['brand_title'];
-              echo "<li><a href='index.php?brand=".$row_brands['brand_id']."'>$brand_title</a></li>";
-            }
+  while ($row_brands = mysqli_fetch_array($run_brands)) {
+    $brand_title = $row_brands['brand_title'];
+    echo "<li><a href='index.php?brand=" . $row_brands['brand_id'] . "'>$brand_title</a></li>";
+  }
 }
 
-function getPro($qty){
-          if(!isset($_GET['cat'])){
-            if(!isset($_GET['brand'])){
-              global $con;
+function getPro($qty)
+{
+  if (!isset($_GET['cat'])) {
+    if (!isset($_GET['brand'])) {
+      global $con;
 
-          $get_pro = "SELECT * FROM `products` order by `product_id` desc limit 0,$qty";
+      $get_pro = "SELECT * FROM `products` order by `product_id` desc limit 0,$qty";
 
-          $result = $con->query($get_pro);
-          $product_all = [];
-          if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $product_all[]=$row;
-            }
+      $result = $con->query($get_pro);
+      $product_all = [];
+      if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+          $product_all[] = $row;
+        }
+      }
+
+      if (!function_exists('currency_format')) {
+        function currency_format($number, $suffix = '₫')
+        {
+          if (!empty($number)) {
+            return number_format($number, 0, ',', '.') . "{$suffix}";
           }
-          
-          if (!function_exists('currency_format')) {
-            function currency_format($number, $suffix = '₫')
-            {
-                if (!empty($number)) {
-                    return number_format($number, 0, ',', '.') . "{$suffix}";
-                }
-            }
-              } // quy doi tien sang tien viet
-        
-          foreach($product_all as $value){
-            
-            echo "
+        }
+      } // quy doi tien sang tien viet
+
+      foreach ($product_all as $value) {
+
+        echo "
                   <div id='single_product'>
                   
-                  <a href='details.php?pro_id=".$value['product_id']."'>
-                  <img src='admin_area/product_images/".$value['product_image']."' width='220px' height='150px'>
-                  <h3>".$value['product_title']."</h3>
+                  <a href='details.php?pro_id=" . $value['product_id'] . "'>
+                  <img src='admin_area/product_images/" . $value['product_image'] . "' width='220px' height='150px'>
+                  <h3>" . $value['product_title'] . "</h3>
                   </a>
 
-                  <p><b>".currency_format($value['product_price'])."</b></p>
+                  <p><b>" . currency_format($value['product_price']) . "</b></p>
 
 
-                  <a href='#' class='buy_btn' id = ".$value['product_id'].">
+                  <a href='#' class='buy_btn' id = " . $value['product_id'] . ">
                   <button href='' class='button' id='button'>
                   <span class='button__text'>
                   <span>C</span><span>H</span><span>Ọ</span><span>N<span><span>  </span><span>M</span><span>U</span><span>A</span>
@@ -124,48 +124,49 @@ function getPro($qty){
                   </div>
           
              ";
-          }    
       }
-   }
-}
-function get_pro_by_cat_id(){
-  if(isset($_GET['cat'])){
-   
-      global $con;
-
-  $get_pro_by_cat = "SELECT * FROM `products` where `cat_id`='".$_GET['cat']."'" ;
-  // select * from products where product_cat='$cat_id'"
-  $result = $con->query($get_pro_by_cat);
-  
-  $product_all = [];
-  if($result->num_rows > 0){
-    while($row = $result->fetch_assoc()){
-        $product_all[]=$row;
     }
   }
-  
-  if (!function_exists('currency_format')) {
-    function currency_format($number, $suffix = '₫')
-    {
-        if (!empty($number)) {
-            return number_format($number, 0, ',', '.') . "{$suffix}";
-        }
-    }
-      }
+}
+function get_pro_by_cat_id()
+{
+  if (isset($_GET['cat'])) {
 
-  foreach($product_all as $value){
-    echo "
+    global $con;
+
+    $get_pro_by_cat = "SELECT * FROM `products` where `cat_id`='" . $_GET['cat'] . "'";
+    // select * from products where product_cat='$cat_id'"
+    $result = $con->query($get_pro_by_cat);
+
+    $product_all = [];
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $product_all[] = $row;
+      }
+    }
+
+    if (!function_exists('currency_format')) {
+      function currency_format($number, $suffix = '₫')
+      {
+        if (!empty($number)) {
+          return number_format($number, 0, ',', '.') . "{$suffix}";
+        }
+      }
+    }
+
+    foreach ($product_all as $value) {
+      echo "
                   <div id='single_product'>
                   
-                  <a href='details.php?pro_id=".$value['product_id']."'>
-                  <img src='admin_area/product_images/".$value['product_image']."' width='220px' height='150px'>
-                  <h3>".$value['product_title']."</h3>
+                  <a href='details.php?pro_id=" . $value['product_id'] . "'>
+                  <img src='admin_area/product_images/" . $value['product_image'] . "' width='220px' height='150px'>
+                  <h3>" . $value['product_title'] . "</h3>
                   </a>
 
-                  <p><b>".currency_format($value['product_price'])."</b></p>
+                  <p><b>" . currency_format($value['product_price']) . "</b></p>
 
 
-                  <a href='' class='buy_btn' id = ".$value['product_id'].">
+                  <a href='' class='buy_btn' id = " . $value['product_id'] . ">
                   <button class='button' id='button'>
                   <span class='button__text'>
                   <span>C</span><span>H</span><span>Ọ</span><span>N<span><span>  </span><span>M</span><span>U</span><span>A</span>
@@ -200,48 +201,49 @@ function get_pro_by_cat_id(){
                   </div>
           
              ";
-  }    
-}
-}
-
-function get_pro_by_brand_id(){
-  if(isset($_GET['brand'])){
-   
-      global $con;
-
-  $get_pro_by_cat = "SELECT * FROM `products` where `brand_id`='".$_GET['brand']."'" ;
-  // select * from products where product_cat='$cat_id'"
-  $result = $con->query($get_pro_by_cat);
-  
-  $product_all = [];
-  if($result->num_rows > 0){
-    while($row = $result->fetch_assoc()){
-        $product_all[]=$row;
     }
   }
-  
-  if (!function_exists('currency_format')) {
-    function currency_format($number, $suffix = '₫')
-    {
+}
+
+function get_pro_by_brand_id()
+{
+  if (isset($_GET['brand'])) {
+
+    global $con;
+
+    $get_pro_by_cat = "SELECT * FROM `products` where `brand_id`='" . $_GET['brand'] . "'";
+    // select * from products where product_cat='$cat_id'"
+    $result = $con->query($get_pro_by_cat);
+
+    $product_all = [];
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $product_all[] = $row;
+      }
+    }
+
+    if (!function_exists('currency_format')) {
+      function currency_format($number, $suffix = '₫')
+      {
         if (!empty($number)) {
-            return number_format($number, 0, ',', '.') . "{$suffix}";
+          return number_format($number, 0, ',', '.') . "{$suffix}";
         }
+      }
     }
-  }
 
-  foreach($product_all as $value){
-    echo "
+    foreach ($product_all as $value) {
+      echo "
     <div id='single_product'>
     
-    <a href='details.php?pro_id=".$value['product_id']."'>
-    <img src='admin_area/product_images/".$value['product_image']."' width='220px' height='150px'>
-    <h3>".$value['product_title']."</h3>
+    <a href='details.php?pro_id=" . $value['product_id'] . "'>
+    <img src='admin_area/product_images/" . $value['product_image'] . "' width='220px' height='150px'>
+    <h3>" . $value['product_title'] . "</h3>
     </a>
 
-    <p><b>".currency_format($value['product_price'])."</b></p>
+    <p><b>" . currency_format($value['product_price']) . "</b></p>
 
 
-    <a href='' class='buy_btn' id = ".$value['product_id'].">
+    <a href='' class='buy_btn' id = " . $value['product_id'] . ">
     <button class='button' id='button'>
     <span class='button__text'>
     <span>C</span><span>H</span><span>Ọ</span><span>N<span><span>  </span><span>M</span><span>U</span><span>A</span>
@@ -276,11 +278,9 @@ function get_pro_by_brand_id(){
     </div>
 
 ";
-  }    
+    }
+  }
 }
-}
-
-
 
 
 ?>

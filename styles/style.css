@@ -27,7 +27,7 @@ time, mark, audio, video {
 
 
 .main_wrapper{
-    width: 1260px;
+    width: 100% !important;
     height: auto;
     margin: auto;
     background: #FCFDFE;
@@ -39,13 +39,8 @@ time, mark, audio, video {
   width: 100%;
   height: 55px;
   margin: auto;
-  /* background: linear-gradient( 
-    180deg, #60CEF0 24%, #3F5EFB 92%); */
   background: rgba(0, 0, 0, .2);
-  /* margin-left: 170px; */
-  /* margin-top: 10px; */
   display: flex;
-  /* justify-content: space-around; */
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
@@ -54,7 +49,6 @@ time, mark, audio, video {
 .header_logo{
     float: left;
     width: 150px;
-    /* margin-top: 10px; */
 }
 
 #logo{
@@ -66,7 +60,7 @@ time, mark, audio, video {
 
 /*kết thúc css search*/
 
-#form{
+/* #form{
   float: left;
   width: 53%;
   padding-left: 100px;
@@ -127,12 +121,12 @@ time, mark, audio, video {
 }
 
 .cart .noti_cart_number{
-    color: red;
+    color: #fff;
     position: absolute;
     top: 0px;
     left: 44px;
     font-size: 12px;
-}
+} */
 
 /* .shopping_cart_container{
   
@@ -331,78 +325,7 @@ time, mark, audio, video {
 /*css menu start*/
 
 
-.skew-menu{
-  /* text-align:center;
-  margin-top:3px;
-  font-family: Arial, Helvetica, sans-serif; */
-  /* border-radius: 25px; */
-	height: fit-content;
-	display: inline-flex;
-	/* background-color: #fff; */
-  background-color: rgba(0, 0, 0, .2);
-	-webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);  
-	align-items: center;
-	padding: 0 10px;
-	justify-content: center;
-}
 
-/* .skew-menu ul{
-  display:inline-block;
-  margin:0;
-  padding:0;
-  list-style:none;
-  transform:skew(-25deg);
-} */
-
-.skew-menu ul li{
-  /* background:#fff;
-  float:left;
-  border-right:1px solid #eee;
-  box-shadow:0 1px 1px rgba(0,0,0,0.1);
-  text-transform:uppercase;
-  color:#555;
-  font-weight:bolder;
-  transition:all 0.3s linear; */
-  list-style: none;
-	color: white;
-	font-family: sans-serif;
-	font-weight: bold;
-	padding: 12px 16px;
-	margin: 0 8px;
-	position: relative;
-	cursor: pointer;
-	white-space: nowrap;
-  float: left;
-  text-transform:uppercase;
-  /* border:1px solid #000; */
-  /* border-radius: 25px; */
-  /* box-shadow:0 1px 1px rgba(0,0,0,0.1); */
-  font-weight:bolder;
-  transition:all 0.3s linear;
-
-}
-.skew-menu  li::before{
-  content: " ";
-	position: absolute;
-	top: 0;
-	left:0;
-	height:100%;
-	width: 100%;
-  z-index:-1;
-	transition: .2s;
-	border-radius: 25px;
-}
-.skew-menu  li:hover::before{
-  background: linear-gradient(to bottom, #e8edec, #d2d1d3);
-	box-shadow: 0px 3px 20px 0px black;
-	transform: scale(1.2);
-}
-.skew-menu ul:hover::before{
-  background: linear-gradient(to bottom, #e8edec, #d2d1d3);
-	box-shadow: 0px 3px 20px 0px black;
-	transform: scale(1.2);
-}
 .skew-menu a{
   text-decoration: none;
   color: #222;
@@ -1004,7 +927,7 @@ time, mark, audio, video {
 
 /*start css footer*/
 
-.footer_wrapper {
+/* .footer_wrapper {
   height: auto;
   background-color: #26222A;
   display: flex;
@@ -1012,13 +935,12 @@ time, mark, audio, video {
   position: relative;
   padding: 15px 30px;
   margin-top: 10px;
-}
+} */
 /*Thiết Lập Cho Thành Phần Nội Dung Giới Thiệu*/
-.footer_wrapper .contents {
+/* .footer_wrapper .contents {
   margin-right: 30px;
 }
 .footer_wrapper .contents.about {
-  /* flex: 2; */
   width: 40%;
 }
 .footer_wrapper .contents.about h2 {
@@ -1032,7 +954,6 @@ time, mark, audio, video {
   content: "";
   position: absolute;
   bottom: -5px;
-  /* left: 0; */
   width: 20px;
   height: 2px;
   background: #f00;
@@ -1042,7 +963,7 @@ time, mark, audio, video {
   color: #999;
   text-decoration: none;
   padding-left: 40px;
-}
+} */
 /*Thiết Lập Cho Thành Phần Icon Mạng Xã Hội*/
 .social-icon{
   margin-top: 20px;

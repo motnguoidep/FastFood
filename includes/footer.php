@@ -62,3 +62,46 @@
 </body>
 
 </html>
+<style>
+    /*start css footer*/
+
+.footer_wrapper {
+  height: auto;
+  background-color: #c00000;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 15px 30px;
+  margin-top: 10px;
+}
+/*Thiết Lập Cho Thành Phần Nội Dung Giới Thiệu*/
+.footer_wrapper .contents {
+  margin-right: 30px;
+}
+.footer_wrapper .contents.about {
+  /* flex: 2; */
+  width: 40%;
+}
+.footer_wrapper .contents.about h2 {
+  position: relative;
+  color: #fff;
+  font-weight: 400;
+  margin-bottom: 15px;
+  padding-left: 40px;
+}
+.footer_wrapper .contents.about h2::before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  /* left: 0; */
+  width: 20px;
+  height: 2px;
+  background: #f00;
+  padding-left: 50px;
+}
+.footer_wrapper .contents.about p {
+  color: #999;
+  text-decoration: none;
+  padding-left: 40px;
+}
+</style>

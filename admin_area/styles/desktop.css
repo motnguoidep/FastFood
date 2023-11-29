@@ -37,15 +37,15 @@ body{
     overflow: hidden;
 }
 
-.header{
-    height: 20px;
+/* .header{
+    height: 40px;
     background-color: rgba(250, 250, 250, 0.7);
     border: 0.01px solid rgba(235, 235, 235, 0.9);
     padding: 15px;
-}
+} */
 .navbar-header{
  
-    width: 40%;
+    width: 30%;
     float: left;
 }
 a.admin_name{
@@ -83,7 +83,7 @@ ul.dropdown-navbar-right ul li:hover{
     background-color: rgba(245, 245, 245, 1);
 }
 
-.body_container{
+/* .body_container{
     width: 100%;
     clear: both;
 }
@@ -98,8 +98,8 @@ ul.dropdown-navbar-right ul li:hover{
     padding-bottom: 55px;
     background-color: rgb(236 236 236);
     border-radius: 4px;
-}
-.content{
+} */
+/* .content{
     width: 60%;
     float: right;
     border-radius: 4px;
@@ -108,7 +108,7 @@ ul.dropdown-navbar-right ul li:hover{
 }
 .content_box{
     padding: 15px;
-}
+} */
 
 
 .left_sidebar_box ul{
@@ -130,7 +130,7 @@ ul.dropdown-navbar-right ul li:hover{
 }
 .left_sidebar_box ul li{
     padding: 5px 35px;
-    color: rgba(2, 133, 173, 1);
+    /* color: rgba(2, 133, 173, 1); */
     text-decoration: none;
     font-weight: bold;
 }
@@ -146,7 +146,7 @@ ul.dropdown-navbar-right ul li:hover{
 }
 .left_sidebar_box ul li li a{
     margin-left: 20px;
-    color: black;
+    /* color: black; */
 
 }
 
@@ -162,6 +162,8 @@ ul.dropdown-navbar-right ul li:hover{
 .left_sidebar_second_level{
     list-style: none;
 } 
+
+
 /* Thêm Sản Phẩm */
 .border_bottom{
     border-bottom: 0.01px solid rgba(0, 0, 0, 0.2);

@@ -1,4 +1,4 @@
-
+<!-- 
 <?php
     $edit_brand = mysqli_query($con,"SELECT * FROM brands where brand_id='$_GET[brand_id]'");
     $fetch_brand = mysqli_fetch_array($edit_brand);
@@ -27,17 +27,3 @@
     </form>
 </div>
 <!-- Thay đổi brand mới -->
-<?php
-if (isset($_POST['edit_brand'])) {
-    
-    $brand_title = mysqli_real_escape_string($con,$_POST['product_brand']);
-
-    $edit_brand = mysqli_query($con,"UPDATE brands set brand_title = '$brand_title' where brand_id='$_GET[brand_id]'");
-
-    if ($edit_brand) {
-        echo ("<script>alert('Thay đổi Hãng thành công!')</script>");
-        // echo ("<script>window.open(window.location.href,'_self')</script>");
-        echo ("<script>window.open('index.php?action=view_brands','_self')</script>");
-    }
-}
-?>
