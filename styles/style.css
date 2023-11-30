@@ -500,17 +500,17 @@ time, mark, audio, video {
 #menu a:hover{
     color: #33FAFF;
 } */
-.content_wrapper_myaccount{
+/* .content_wrapper_myaccount{
   height: 626px;
 }
 .content_wrapper{
     width: 1260px;
     margin: auto;
-    /* position: relative; */
-}
+    position: relative;
+} */
 
 #sidebar{
-    width: 200px;
+    width: 400px;
     float: left;
     height: auto;
     text-transform:uppercase;
@@ -555,14 +555,14 @@ time, mark, audio, video {
 }
 
 #content_area{
-    width: 1000px;
-    float: left;
+    width: 70%;
+    float: left; 
     margin-left: 60px;
     padding-top: 30px;
 }
 
 #products_box{
-    width: 1000px;
+    width: 70%;
     text-align: center;
     margin-bottom: 10px;
 }
@@ -964,6 +964,7 @@ time, mark, audio, video {
   text-decoration: none;
   padding-left: 40px;
 } */
+
 /*Thiết Lập Cho Thành Phần Icon Mạng Xã Hội*/
 .social-icon{
   margin-top: 20px;

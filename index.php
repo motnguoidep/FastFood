@@ -70,7 +70,7 @@ if ($run_show_pro->num_rows > 0) {
   })
 </script>
 <!-- <img src="ajax/add_to_cart_ajax.php" alt=""> -->
-<div class="content_wrapper">
+<div id="content_wrapper">
 
   <div id="sidebar">
     <hr>
@@ -212,3 +212,14 @@ $product_total = ceil($product_total / 8);  //30/8=3,75
 <?php
 include('includes/footer.php');
 ?>
+<style>
+  .content_wrapper_myaccount{
+  height: auto;
+}
+#content_wrapper{
+    width: 100%;
+    margin: auto;
+    /* position: relative; */
+}
+
+</style>

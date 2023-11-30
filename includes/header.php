@@ -162,7 +162,7 @@ if (isset($_SESSION['email'])) {
 }
 #form{
   float: left;
-  width: 53%;
+  width: 60%%;
   padding-left: 100px;
 }
 

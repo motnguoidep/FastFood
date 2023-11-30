@@ -100,8 +100,163 @@
   padding-left: 50px;
 }
 .footer_wrapper .contents.about p {
-  color: #999;
+  color: #fff;
   text-decoration: none;
   padding-left: 40px;
+}
+
+
+/*Thiết Lập Cho Thành Phần Icon Mạng Xã Hội*/
+.social-icon{
+  margin-top: 20px;
+  display: flex;
+}
+.social-icon li {
+  list-style: none;
+}
+.social-icon li a{
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.social-icon li a:hover{
+  background: #f00;
+}
+.social-icon li a .fa{
+  color: #fff;
+  font-size: 20px;
+}
+/*End Thành Phần Nội Dung Giới Thiệu*/
+
+
+/*Css Thành Phần Nội Dung Link*/
+.links h2{
+  position: relative;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 15px;
+  padding-left: 40px;
+}
+.links h2::before{
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  /* left: 0; */
+  width: 50px;
+  height: 2px;
+  background: #f00;
+}
+.links{
+ position: relative;
+ width: 25%;
+}
+.links ul li{
+  list-style: none;
+}
+.links ul li a{
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+.links ul li a:hover{
+  color: #fff;
+}
+/*End Thành Phần Nội Dung Link*/
+
+
+/*CSSS Thong tin lien he*/
+.contact h2{
+  position: relative;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 15px;
+  padding-left: 40px;
+}
+.contact h2::before{
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  /* left: 0; */
+  width: 50px;
+  height: 2px;
+  background: #f00;
+}
+.contact{
+  width: calc(35% - 60px);
+  margin-right: 0 !important;
+}
+.contact .info{
+  position: relative;
+}
+.contact .info li{
+  display: flex;
+  margin-bottom: 16px;
+}
+.contact .info li span:nth-child(1) {
+  color: #fff;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.contact .info li span{
+  color: #fff;
+}
+.contact .info li a{
+  color: #fff;
+  text-decoration: none;
+}
+/*btn submit Email*/
+.btn {
+  display: inline-block;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  margin-top:16px;
+  transition: all 200ms ease-in;
+  cursor: pointer;
+}
+.btn--primary {
+  background: #222;
+  color: #fff;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, .1);
+  border-radius: 5px;
+  padding: 8px 24px;
+}
+.btn--primary:hover {
+  background: #fff;
+  color: #000;
+  border-radius: 5px;
+}
+.btn--primary:active {
+  background: #f00;
+  box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, .2);
+}
+.form__field {
+  width: 90%;
+  background: #fff;
+  color: #a3a3a3;
+  font: inherit;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .1);
+  border: 0;
+  outline: 0;
+  padding: 8px 4px;
+}
+/*End thong tin lien he*/
+/*end css footer*/
+
+#not_login{
+  padding-top: 290px;
+  font-size: 30px;
+  font-family: revert;
 }
 </style>
