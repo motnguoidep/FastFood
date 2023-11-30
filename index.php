@@ -107,7 +107,8 @@ if ($run_show_pro->num_rows > 0) {
   <!--end content_area-->
 
   <!-- phan trang -->
-  <?php
+</div>
+<?php
   $brand = isset($_GET['brand']);
   $cat = isset($_GET['cat']);
   if ($cat == false) {
@@ -121,7 +122,6 @@ if ($run_show_pro->num_rows > 0) {
       </form>
   <?php }
   } ?>
-</div>
 <?php
 
 //phan trang 

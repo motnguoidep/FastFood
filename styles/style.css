@@ -228,6 +228,7 @@ time, mark, audio, video {
 }
 
 .register_login{
+    margin-right: 20px;
     float: left;
     width: 180px;
     display: flex;
@@ -504,13 +505,13 @@ time, mark, audio, video {
   height: 626px;
 }
 .content_wrapper{
-    width: 1260px;
+    width: 100% !important;
     margin: auto;
     /* position: relative; */
 }
 
 #sidebar{
-    width: 200px;
+    width: 20%;
     float: left;
     height: auto;
     text-transform:uppercase;
@@ -555,9 +556,9 @@ time, mark, audio, video {
 }
 
 #content_area{
-    width: 1000px;
+    width: 70%;
     float: left;
-    margin-left: 60px;
+    margin-left: 8%;
     padding-top: 30px;
 }
 
@@ -778,8 +779,8 @@ time, mark, audio, video {
 
 .list_phantrang{
   margin-top: 15px;
-  float: left;
-  padding-left: 432px;
+  display: flex;
+  justify-content: center;
   /* text-decoration: none; */
 }
 
