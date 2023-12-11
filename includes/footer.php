@@ -67,7 +67,7 @@
 
 .footer_wrapper {
   height: auto;
-  background-color: #c00000;
+  background-color: #900000;
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -84,7 +84,7 @@
 }
 .footer_wrapper .contents.about h2 {
   position: relative;
-  color: #fff;
+  color: #fff; 
   font-weight: 400;
   margin-bottom: 15px;
   padding-left: 40px;
@@ -93,15 +93,21 @@
   content: "";
   position: absolute;
   bottom: -5px;
-  /* left: 0; */
+  left: 0;
   width: 20px;
   height: 2px;
   background: #f00;
   padding-left: 50px;
 }
 .footer_wrapper .contents.about p {
-  color: #999;
+  color: #fff;
   text-decoration: none;
   padding-left: 40px;
+}
+.contents ul li a{
+    color: #fff;
+}
+.info ul{
+    color: #fff;
 }
 </style>

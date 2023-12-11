@@ -26,19 +26,19 @@ if ($run_show_pro->num_rows > 0) {
 }
 ?>
 <script type="text/javascript">
-  $(document).ready(function() {
+  $(document).ready(function () {
 
 
     $("p.total_item").text("<?php if (isset($total_item)) {
-                              echo $total_item;
-                            } else {
-                              echo "0";
-                            } ?>");
+      echo $total_item;
+    } else {
+      echo "0";
+    } ?>");
     // buy_btn
     var total_item = "<?php echo $total_item; ?>";
 
 
-    $("button#button").click(function() {
+    $("button#button").click(function () {
       var id = $(this).closest("a.buy_btn").attr("id");
 
 
@@ -49,7 +49,7 @@ if ($run_show_pro->num_rows > 0) {
         data: {
           id: id
         },
-        success: function(response) {
+        success: function (response) {
           var koconhang = response;
           var check = (koconhang.indexOf("khong"));
 
@@ -61,7 +61,7 @@ if ($run_show_pro->num_rows > 0) {
           }
 
         },
-        error: function(response) {
+        error: function (response) {
           console.log("error");
         },
       })
@@ -70,7 +70,7 @@ if ($run_show_pro->num_rows > 0) {
   })
 </script>
 <!-- <img src="ajax/add_to_cart_ajax.php" alt=""> -->
-<div class="content_wrapper">
+<div id="content_wrapper">
 
   <div id="sidebar">
     <hr>
@@ -94,7 +94,7 @@ if ($run_show_pro->num_rows > 0) {
   <div id="content_area">
     <div id="product_box">
       <?php
-      getPro(8);
+      getPro(15);
       // echo $_SESSION['email'];
       get_pro_by_cat_id();
       get_pro_by_brand_id();
@@ -102,25 +102,26 @@ if ($run_show_pro->num_rows > 0) {
 
     </div>
     <!--end product_box-->
-
+  
   </div>
   <!--end content_area-->
 
   <!-- phan trang -->
+
 </div>
 <?php
   $brand = isset($_GET['brand']);
   $cat = isset($_GET['cat']);
   if ($cat == false) {
     if ($brand == false) {
-  ?>
+      ?>
       <form method="POST">
         <div class="list_phantrang">
           <a class="prev" href="#">PREV</a>
           <a class="next" href="#">NEXT</a>
         </div>
       </form>
-  <?php }
+    <?php }
   } ?>
 <?php
 
@@ -134,19 +135,19 @@ if ($run_pro->num_rows > 0) {
   }
 }
 // echo $product_total."<br>";
-$product_total = ceil($product_total / 8);  //30/8=3,75
+$product_total = ceil($product_total / 15);  //30/8=3,75
 // echo $product_total;
 
 ?>
 <script type="text/javascript">
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("a.prev").hide();
     var check = 1; //trang dau`
     var show_product_qty = 0;
 
     //phan trang ..next      
 
-    $("a.next").click(function() {
+    $("a.next").click(function () {
       check++;
       if (check > 1) {
         $("a.prev").show();
@@ -155,7 +156,7 @@ $product_total = ceil($product_total / 8);  //30/8=3,75
       if (check == "<?php echo $product_total; ?>") {
         $("a.next").hide();
       }
-      show_product_qty += 8;
+      show_product_qty += 15;
       $.ajax({
         method: "POST",
         url: "ajax/phantrang.php",
@@ -163,13 +164,13 @@ $product_total = ceil($product_total / 8);  //30/8=3,75
         data: {
           show_product_qty: show_product_qty
         },
-        success: function(response) {
+        success: function (response) {
           // alert(response);
           console.log(response);
           $("div#product_box").html(response);
 
         },
-        error: function(response) {
+        error: function (response) {
           console.log("error");
         },
       })
@@ -177,7 +178,7 @@ $product_total = ceil($product_total / 8);  //30/8=3,75
 
     //phan trang ..prev      
 
-    $("a.prev").click(function() {
+    $("a.prev").click(function () {
       check--;
       // var asd = "<?php echo "asd" ?>"
 
@@ -188,7 +189,7 @@ $product_total = ceil($product_total / 8);  //30/8=3,75
       if (check == 1) {
         $("a.prev").hide();
       }
-      show_product_qty -= 8;
+      show_product_qty -= 15;
       $.ajax({
         method: "POST",
         url: "ajax/phantrang.php",
@@ -196,13 +197,13 @@ $product_total = ceil($product_total / 8);  //30/8=3,75
         data: {
           show_product_qty: show_product_qty
         },
-        success: function(response) {
+        success: function (response) {
           // alert(response);
           console.log(response);
           $("div#product_box").html(response);
 
         },
-        error: function(response) {
+        error: function (response) {
           console.log("error");
         },
       })
@@ -212,3 +213,140 @@ $product_total = ceil($product_total / 8);  //30/8=3,75
 <?php
 include('includes/footer.php');
 ?>
+<style>
+  .content_wrapper_myaccount {
+    height: auto;
+  }
+
+  #content_wrapper {
+    width: 100%;
+    margin: auto;
+    position: relative;
+  }
+  #sidebar {
+    background-color: #fff; /* Màu nền trắng */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    border-radius: 10px; /* Góc bo tròn */
+    padding: 20px;
+}
+
+#sidebar hr {
+    border: none; /* Loại bỏ đường ngang */
+    border-top: 1px solid #eee; /* Tạo đường viền trên */
+    margin: 15px 0; /* Khoảng cách giữa các phần */
+}
+
+#sidebar_title {
+    font-size: 1.5em;
+    color: #c00000;
+    margin-bottom: 10px;
+}
+
+#cats, #brands {
+    list-style: none;
+    padding: 0;
+}
+
+#cats li, #brands li {
+    margin-bottom: 10px;
+}
+
+#cats a, #brands a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#cats a:hover, #brands a:hover {
+    color: #c00000;
+}
+
+
+/* end sidebar */
+#content_area{
+    width: 70%;
+    float: left;
+    margin-left: 4%;
+    padding-top: 30px;
+}
+#products_box{
+    width: 1000px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#single_product{
+    float: left;
+    border: 1px solid #F4F6F8 ;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 7px;
+    transition: transform 1.2s;
+    
+}
+
+#single_product a{
+    text-decoration: none;
+    color: #000;
+    /* margin-bottom: 10px; */
+
+}
+#single_product a img{
+    border-radius: 10px;
+    margin-bottom: 10px;
+
+
+}
+
+#single_product b{
+  /* padding-top: 10px; */
+  color: #D53B2A;
+}
+
+/* #single_product img{
+    transition: transform .2s;
+} */
+
+#single_product:hover{
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.02); 
+}
+
+.list_phantrang a {
+  margin: 0 5px;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  background-color: #c00000;
+  color: #fff;
+  font-size: 20px;  
+  padding: 10px;
+}
+.list_phantrang a.prev {
+  -moz-border-radius: 50px 0 0 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px 0 0 50px;
+  width: 100px;
+  text-decoration: none;
+  margin-right: 10px;
+
+}
+.list_phantrang a.next {
+  -moz-border-radius: 0 50px 50px 0;
+  -webkit-border-radius: 0;
+  border-radius: 0 50px 50px 0;
+  width: 100px;
+  text-decoration: none;
+}
+.list_phantrang a:hover {
+  background-color: #900000;
+}
+.list_phantrang a.active, .list_phantrang a:active {
+  background-color: #900000;
+}
+</style>

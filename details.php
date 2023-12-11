@@ -1,84 +1,84 @@
-
-
-
-
 <?php
 include('includes/header.php');
 ?>
 <script>
-        $(document).ready(function(){
-            $("p.total_item").text("<?php if(isset($_SESSION['total_item'])){echo $_SESSION['total_item']; }else{echo "0" ;} ?>");
-     
-        })
+  $(document).ready(function () {
+    $("p.total_item").text("<?php if (isset($_SESSION['total_item'])) {
+      echo $_SESSION['total_item'];
+    } else {
+      echo "0";
+    } ?>");
+
+  })
 </script>
-      <div class="content_wrapper">
-        <div id="sidebar">
-          <hr>
-          <div id="sidebar_title">Sản phẩm</div>
-          <hr>
-          <ul id="cats">
-            <?php
-            /*gọi cái hàm này ở bên file functions.php qua á*/
-            getCats();
-            ?>
-          </ul>
-          <hr>
-          <div id="sidebar_title">Thương hiệu</div>
-          <hr>
-          <ul id="cats">
-            <?php
-            /*giống cái trên thôi*/
-            getBrands();
-            ?>
-          </ul>
-          <hr>
-        </div>
-        <div id="content_area">
-          
-          <div id="product_box">
+<div class="content_wrapper">
+  <div id="sidebar">
+    <hr>
+    <div id="sidebar_title">Sản phẩm</div>
+    <hr>
+    <ul id="cats">
+      <?php
+      /*gọi cái hàm này ở bên file functions.php qua á*/
+      getCats();
+      ?>
+    </ul>
+    <hr>
+    <div id="sidebar_title">Thương hiệu</div>
+    <hr>
+    <ul id="cats">
+      <?php
+      /*giống cái trên thôi*/
+      getBrands();
+      ?>
+    </ul>
+    <hr>
+  </div>
+  <div id="content_area">
+
+    <div id="product_box">
 
 
-          <?php
-          if(isset($_GET['pro_id'])){
-            $product_id = $_GET['pro_id'];
+      <?php
+      if (isset($_GET['pro_id'])) {
+        $product_id = $_GET['pro_id']; //tra xem có tham số pro_id được truyền không.
+      
+        $run_query_by_pro_id = mysqli_query($con, "select *from products where product_id='$product_id'");
 
-            $run_query_by_pro_id = mysqli_query($con, "select *from products where product_id='$product_id'");
-           
 
-            while($row_pro = mysqli_fetch_array($run_query_by_pro_id)){
-              $pro_id = $row_pro['product_id'];
-              
-              $sql_cat = "SELECT * FROM `categories` where `cat_id`='".$row_pro['cat_id']."';";
-              $result_cat = $con->query($sql_cat);
-              $row_cat = $result_cat->fetch_assoc();
+        while ($row_pro = mysqli_fetch_array($run_query_by_pro_id)) {
+          $pro_id = $row_pro['product_id'];
 
-              $sql_brand = "SELECT * FROM `brands` where `brand_id`='".$row_pro['brand_id']."';";
-              $result_brand = $con->query($sql_brand);
-              $row_brand = $result_brand->fetch_assoc();
+          $sql_cat = "SELECT * FROM `categories` where `cat_id`='" . $row_pro['cat_id'] . "';";
+          $result_cat = $con->query($sql_cat);
+          $row_cat = $result_cat->fetch_assoc();
 
-              $pro_cat = $row_cat['cat_title'];
-              $pro_brand = $row_brand['brand_title'];
-              $pro_title = $row_pro['product_title'];
-              $pro_price = $row_pro['product_price'];
-              $pro_image = $row_pro['product_image'];
-              $product_desc = $row_pro['product_desc'];
-              /*đây là hàm định dạng tiền tệ VN currency_format()*/ 
-              /*bắt đầu currency_format()*/
-              if (!function_exists('currency_format')) {
-                  function currency_format($number, $suffix = '₫')
-                  {
-                      if (!empty($number)) {
-                          return number_format($number, 0, ',', '.') . "{$suffix}";
-                      }
-                  }
+          $sql_brand = "SELECT * FROM `brands` where `brand_id`='" . $row_pro['brand_id'] . "';";
+          $result_brand = $con->query($sql_brand);
+          $row_brand = $result_brand->fetch_assoc();
+
+          $pro_cat = $row_cat['cat_title'];
+          $pro_brand = $row_brand['brand_title'];
+          $pro_title = $row_pro['product_title'];
+          $pro_price = $row_pro['product_price'];
+          $pro_image = $row_pro['product_image'];
+          $product_desc = $row_pro['product_desc'];
+          /*đây là hàm định dạng tiền tệ VN currency_format()*/
+          /*bắt đầu currency_format()*/
+          if (!function_exists('currency_format')) {
+            function currency_format($number, $suffix = '₫')
+            {
+              if (!empty($number)) {
+                return number_format($number, 0, ',', '.') . "{$suffix}";
               }
-              /* kết thúc currency_format()*/
-              
-              
+            }
+          }
+          /* kết thúc currency_format()*/
 
-              $pro_pricess = currency_format($pro_price); /* tạo 1 cái biến để lưu lại hihi*/
 
-              echo "
+
+          $pro_pricess = currency_format($pro_price); /* tạo 1 cái biến để lưu lại hihi*/
+
+          echo "
                     <div id='details_web_title'>
                       <h2>$pro_title</h2>
                     </div>
@@ -89,7 +89,7 @@ include('includes/header.php');
                     </div>
                     <div id='detail_web_price'>
                                       <p><b>$pro_pricess</b></p>
-                                      <a href='cart.php' class='buy_btn' id = ".$_GET['pro_id'].">
+                                      <a href='cart.php' class='buy_btn' id = " . $_GET['pro_id'] . ">
                                       <button class='button' id='button'>
                                               <span class='button__text'>
                                               <span>C</span><span>H</span><span>Ọ</span><span>N </span><span>M</span><span>U</span><span>A</span>
@@ -124,44 +124,191 @@ include('includes/header.php');
                                     </a>
                     </div>
   
-               ";   
+               ";
 
-            }
-          }
-          ?>
-<script type="text/javascript">
-    $(document).ready(function(){
-      $("p.total_item").text("<?php if(isset($total_item)){echo $total_item; }else{echo "0" ;} ?>");
-      // buy_btn
-      var total_item = 0;
-      $("button#button").click(function(){
+        }
+      }
+      ?>
+      <script type="text/javascript">
+        $(document).ready(function () {
+          $("p.total_item").text("<?php if (isset($total_item)) {
+            echo $total_item;
+          } else {
+            echo "0";
+          } ?>");
+          // buy_btn
+          var total_item = 0;
+          $("button#button").click(function () {
 
-        var id = $(this).closest("a.buy_btn").attr("id");
-        total_item++;
-        // $("p.total_item").text(total_item);
-        $.ajax({
-							method : "POST",
-							url: "ajax/add_to_cart_ajax.php",
-							mimeType: "multipart/form-data",
-							data : {id : id},
-							success : function(response){					
+            var id = $(this).closest("a.buy_btn").attr("id");
+            total_item++;
+            // $("p.total_item").text(total_item);
+            $.ajax({
+              method: "POST",
+              url: "ajax/add_to_cart_ajax.php",
+              mimeType: "multipart/form-data",
+              data: { id: id },
+              success: function (response) {
                 // alert(response);
                 console.log(response);
-							},
-              error:function(response){					
-								console.log("error");
-							},
-        })
-      })
-     
-    })
-</script>
+              },
+              error: function (response) {
+                console.log("error");
+              },
+            })
+          })
 
-          </div> <!--end product_box-->
-        </div> <!--end content_area-->
-      </div><!--/.content_wrapper -->
-     <?php
-     include('includes/footer.php');
-     
-     ?>
-     
+        })
+      </script>
+
+    </div> <!--end product_box-->
+  </div> <!--end content_area-->
+</div><!--/.content_wrapper -->
+<?php
+include('includes/footer.php');
+
+?>
+
+<style>
+  /* Web Details */
+  #details_web_title {
+    text-align: center;
+    margin-bottom: 20px;
+    /* padding-left: 15px; */
+  }
+  #details_web {
+    padding-left: 40px;
+  }
+
+  #details_web h2 {
+    font-size: 2em;
+    color: #c00000;
+    padding-left: 30px;
+    
+    /* Đổi màu của tên sản phẩm */
+  }
+
+  #details_web img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* Thêm khoảng cách giữa ảnh và đoạn văn bản */
+  }
+
+  #details_web p {
+    margin-top: 20px;
+    padding: 0 70px 0 30px;
+
+  }
+
+  #detail_web_price {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  #detail_web_price p {
+    font-size: 1.5em;
+    color: #c00000;
+  }
+
+  .buy_btn {
+    display: inline-block;
+    /* margin-top: 20px; */
+  }
+
+  .button {
+    background-color: #c00000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+  }
+
+  .button:hover {
+    background-color: #900000;
+  }
+
+  .button__text {
+    position: relative;
+    z-index: 2;
+  }
+
+  .button__svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    fill: #fff;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .button:hover .button__svg {
+    transform: translateX(0);
+  }
+
+  /* Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .fadeIn {
+    animation: fadeIn 1s ease;
+  }
+  #content_wrapper {
+    width: 100%;
+    margin: auto;
+    position: relative;
+  }
+  #sidebar {
+    background-color: #fff; /* Màu nền trắng */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    border-radius: 10px; /* Góc bo tròn */
+    padding: 20px;
+}
+
+#sidebar hr {
+    border: none; /* Loại bỏ đường ngang */
+    border-top: 1px solid #eee; /* Tạo đường viền trên */
+    margin: 15px 0; /* Khoảng cách giữa các phần */
+}
+
+#sidebar_title {
+    font-size: 1.5em;
+    color: #c00000;
+    margin-bottom: 10px;
+}
+
+#cats, #brands {
+    list-style: none;
+    padding: 0;
+}
+
+#cats li, #brands li {
+    margin-bottom: 10px;
+}
+
+#cats a, #brands a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#cats a:hover, #brands a:hover {
+    color: #c00000;
+}
+
+</style>

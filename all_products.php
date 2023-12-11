@@ -87,9 +87,9 @@ if (isset($_SESSION['email'])) {
       // $product_total = ceil($product_total/8);
       // echo $product_total;
 
-
-      getPro($product_total);
-      get_pro_by_cat_id();
+// lấy & hiển thị thông tin 
+      getPro($product_total);// all products
+      get_pro_by_cat_id(); //
       get_pro_by_brand_id();
       ?>
     </div>
@@ -102,3 +102,101 @@ if (isset($_SESSION['email'])) {
 <?php
 include('includes/footer.php');
 ?>
+<style>
+  
+  #content_wrapper {
+    width: 100%;
+    margin: auto;
+    position: relative;
+  }
+  #sidebar {
+    background-color: #fff; /* Màu nền trắng */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    border-radius: 10px; /* Góc bo tròn */
+    padding: 20px;
+}
+
+#sidebar hr {
+    border: none; /* Loại bỏ đường ngang */
+    border-top: 1px solid #eee; /* Tạo đường viền trên */
+    margin: 15px 0; /* Khoảng cách giữa các phần */
+}
+
+#sidebar_title {
+    font-size: 1.5em;
+    color: #c00000;
+    margin-bottom: 10px;
+}
+
+#cats, #brands {
+    list-style: none;
+    padding: 0;
+}
+
+#cats li, #brands li {
+    margin-bottom: 10px;
+}
+
+#cats a, #brands a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#cats a:hover, #brands a:hover {
+    color: #c00000;
+}
+
+
+/* end sidebar */
+#content_area{
+    width: 70%;
+    float: left;
+    margin-left: 4%;
+    padding-top: 30px;
+}
+#products_box{
+    width: 1000px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#single_product{
+    float: left;
+    border: 1px solid #F4F6F8 ;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 7px;
+    transition: transform 1.2s;
+    
+}
+
+#single_product a{
+    text-decoration: none;
+    color: #000;
+    /* margin-bottom: 10px; */
+
+}
+#single_product a img{
+    border-radius: 10px;
+    margin-bottom: 10px;
+
+
+}
+
+#single_product b{
+  /* padding-top: 10px; */
+  color: #D53B2A;
+}
+
+/* #single_product img{
+    transition: transform .2s;
+} */
+
+#single_product:hover{
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.02); 
+}
+
+</style>

@@ -48,7 +48,7 @@ time, mark, audio, video {
 
 .header_logo{
     float: left;
-    width: 150px;
+    width: 10%;
 }
 
 #logo{
@@ -59,7 +59,11 @@ time, mark, audio, video {
 /*bắt đầu css search*/
 
 /*kết thúc css search*/
-
+#form{
+  float: left;
+  width: 600px;
+  padding-left: 100px;
+}
 /* #form{
   float: left;
   width: 53%;
@@ -82,10 +86,7 @@ time, mark, audio, video {
   outline:none;
 }
 
-#form input[type="text"]:focus{
-  /* width: 500px;  */
-  background-color:#FBEAFF;
-}
+
 
 #form input[type=text]{
   width: 450px;
@@ -502,11 +503,13 @@ time, mark, audio, video {
     color: #33FAFF;
 } */
 .content_wrapper_myaccount{
-  height: 626px;
+  height: auto
 }
 .content_wrapper{
     width: 100% !important;
     margin: auto;
+  height: auto;
+  
     /* position: relative; */
 }
 
@@ -516,13 +519,15 @@ time, mark, audio, video {
     height: auto;
     text-transform:uppercase;
     box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+    background: #FCD9C4;
+    padding: 20px 0px;
 }
 
 #sidebar_title{
-    background: white;
+    background: #FCD9C4;
     color: #555;
     font-size: 18px;
-    padding: 10px;
+    padding: 20px;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     text-transform: uppercase;
@@ -530,7 +535,7 @@ time, mark, audio, video {
 }
 
 #cats{
-    text-align: center;
+    /* text-align: center; */
     padding: 0;
 }
 
@@ -555,12 +560,12 @@ time, mark, audio, video {
     font-weight: bold;
 }
 
-#content_area{
-    width: 70%;
+/* #content_area{
+    width: 60%;
     float: left;
-    margin-left: 8%;
+    margin-left: 5%;
     padding-top: 30px;
-}
+} */
 
 #products_box{
     width: 1000px;
@@ -568,14 +573,14 @@ time, mark, audio, video {
     margin-bottom: 10px;
 }
 
-#single_product{
+/* #single_product{
     float: left;
-    border: 1px solid #F4F6F8 ;
+    border: 3px solid #F4F6F8 ;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     margin: 6px;
     transition: transform .2s;
-}
+} */
 
 #single_product a{
     text-decoration: none;
@@ -595,12 +600,12 @@ time, mark, audio, video {
   -webkit-transform: scale(1.1);
   transform: scale(1.1); 
 }
-/* 
+
 #single_product img:hover{
     -ms-transform: scale(1.1);
   -webkit-transform: scale(1.1);
   transform: scale(1.1); 
-} */
+}
 
 /*bắt đầu css button*/
 /* only animate if the device supports hover */
@@ -784,7 +789,7 @@ time, mark, audio, video {
   /* text-decoration: none; */
 }
 
-
+/* 
 .list_phantrang a {
   margin: 0 5px;
   padding: 0;
@@ -794,7 +799,7 @@ time, mark, audio, video {
   -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
   border-radius: 100%;
-  background-color: #60CEF0;
+  background-color: #c00000;
   color: #fff;
   font-size: 20px;  
   padding: 10px;
@@ -820,7 +825,7 @@ time, mark, audio, video {
 }
 .list_phantrang a.active, .list_phantrang a:active {
   background-color: #FFA100;
-}
+} */
 
 #footer{
   width: 1260px;
@@ -862,7 +867,7 @@ time, mark, audio, video {
 }
 
 .dropdown-content a {
-  color: black;
+  color: #fff;
   padding: 3px 4px;
   text-decoration: none;
   display: block;

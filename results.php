@@ -1,76 +1,79 @@
 <?php
 include('includes/header.php');
 ?>
-    <script>
-        $(document).ready(function(){
-            $("p.total_item").text("<?php if(isset($_SESSION['total_item'])){echo $_SESSION['total_item']; }else{echo "0" ;} ?>");
-     
-        })
+<script>
+  $(document).ready(function () {
+    $("p.total_item").text("<?php if (isset($_SESSION['total_item'])) {
+      echo $_SESSION['total_item'];
+    } else {
+      echo "0";
+    } ?>");
+  })
 </script>
-    
-      <div class="content_wrapper">
-        <div id="sidebar">
-          <hr>
-          <div id="sidebar_title">Sản phẩm</div>
-          <hr>
-          <ul id="cats">
-            <?php
-            getCats();
-            ?>
-          </ul>
-          <hr>
-          <div id="sidebar_title">Thương hiệu</div>
-          <hr>
-          <ul id="cats">
-            <?php
-            getBrands();
-            ?>
-          </ul>
-          <hr>
-        </div>
-        <div id="content_area">
-          <div id="product_box">
 
-          <?php
-          if(isset($_GET['search'])){
-              
+<div class="content_wrapper">
+  <div id="sidebar">
+    <hr>
+    <div id="sidebar_title">Sản phẩm</div>
+    <hr>
+    <ul id="cats">
+      <?php
+      getCats();
+      ?>
+    </ul>
+    <hr>
+    <div id="sidebar_title">Thương hiệu</div>
+    <hr>
+    <ul id="cats">
+      <?php
+      getBrands();
+      ?>
+    </ul>
+    <hr>
+  </div>
+  <div id="content_area">
+    <div id="product_box">
 
-            $search_query = $_GET['user_query'];
+      <?php
+      if (isset($_GET['search'])) {
 
 
+        $search_query = $_GET['user_query'];
 
-            $run_query_by_pro_id = mysqli_query($con, "select *from products where product_keywords like'%$search_query%'");
-             $get_pro = "SELECT * FROM `products` where `product_keywords` like '%".$search_query."%'";
 
-            $result = $con->query($get_pro);
-            $product_all = [];
-            if($result->num_rows > 0){
-              while($row = $result->fetch_assoc()){
-                  $product_all[]=$row;
-              }
+
+        $run_query_by_pro_id = mysqli_query($con, "select *from products where product_keywords like'%$search_query%'");
+        $get_pro = "SELECT * FROM `products` where `product_keywords` like '%" . $search_query . "%'";
+
+        $result = $con->query($get_pro);
+        $product_all = [];
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            $product_all[] = $row;
+          }
+        }
+        if (!function_exists('currency_format')) {
+          function currency_format($number, $suffix = '₫')
+          {
+            if (!empty($number)) {
+              return number_format($number, 0, ',', '.') . "{$suffix}";
             }
-              if (!function_exists('currency_format')) {
-            function currency_format($number, $suffix = '₫')
-            {
-                if (!empty($number)) {
-                    return number_format($number, 0, ',', '.') . "{$suffix}";
-                }
-            }
-              }
-        
-          foreach($product_all as $value){
-            echo "
+          }
+        }
+
+        foreach ($product_all as $value) {
+          echo "
                   <div id='single_product'>
                   
-                  <a href='details.php?pro_id=".$value['product_id']."'>
-                  <img src='admin_area/product_images/".$value['product_image']."' width='220px' height='150px'>
-                  <h3>".$value['product_title']."</h3>
+                  <a href='details.php?pro_id=" . $value['product_id'] . "'>
+                  <img src='admin_area/product_images/" . $value['product_image'] . "' width='220px' height='150px'>
+                  <h3>" . $value['product_title'] . "</h3>
                   </a>
 
-                  <p><b>".currency_format($value['product_price'])."</b></p>
+                  <p><b>" . currency_format($value['product_price']) . "</b></p>
 
 
-                  <a href='#' class='buy_btn' id = ".$value['product_id'].">
+                  <a href='#' class='buy_btn' id = " . $value['product_id'] . ">
                   <button href='' class='button' id='button'>
                   <span class='button__text'>
                   <span>C</span><span>H</span><span>Ọ</span><span>N<span><span>  </span><span>M</span><span>U</span><span>A</span>
@@ -105,50 +108,124 @@ include('includes/header.php');
                   </div>
           
              ";
-         
-            }
-          }
-          ?>
 
-          <?php
-          get_pro_by_cat_id();
-          ?>
+        }
+      }
+      ?>
 
-          <?php
-          get_pro_by_brand_id();
-          ?>
+      <?php
+      get_pro_by_cat_id();
+      ?>
 
-          </div> <!--end product_box-->
-        </div> <!--end content_area-->
-      </div><!--/.content_wrapper -->
-      <script type="text/javascript">
-    $(document).ready(function(){
-      $("p.total_item").text("<?php if(isset($_SESSION['total_item'])){echo $_SESSION['total_item']; }else{echo "0" ;} ?>");
-      // buy_btn
-      var total_item = 0;
-      total_item = "<?php if(isset($_SESSION['total_item'])){echo $_SESSION['total_item']; }else{echo "0" ;} ?>";
-      $("button#button").click(function(){
+      <?php
+      get_pro_by_brand_id();
+      ?>
 
-        var id = $(this).closest("a.buy_btn").attr("id");
-        total_item++;
-        $("p.total_item").text(total_item);
-        $.ajax({
-              method : "POST",
-              url: "ajax/add_to_cart_ajax.php",
-              mimeType: "multipart/form-data",
-              data : {id : id},
-              success : function(response){         
-                // alert(response);
-                console.log(response);
-              },
-              error:function(response){         
-                console.log("error");
-              },
-        })
+    </div> <!--end product_box-->
+  </div> <!--end content_area-->
+</div><!--/.content_wrapper -->
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("p.total_item").text("<?php if (isset($_SESSION['total_item'])) {
+      echo $_SESSION['total_item'];
+    } else {
+      echo "0";
+    } ?>");
+    // buy_btn
+    var total_item = 0;
+    total_item = "<?php if (isset($_SESSION['total_item'])) {
+      echo $_SESSION['total_item'];
+    } else {
+      echo "0";
+    } ?>";
+    $("button#button").click(function () {
+
+      var id = $(this).closest("a.buy_btn").attr("id");
+      total_item++;
+      $("p.total_item").text(total_item);
+      $.ajax({
+        method: "POST",
+        url: "ajax/add_to_cart_ajax.php",
+        mimeType: "multipart/form-data",
+        data: { id: id },
+        success: function (response) {
+          // alert(response);
+          console.log(response);
+        },
+        error: function (response) {
+          console.log("error");
+        },
       })
-     
     })
+
+  })
 </script>
-     <?php
-     include('includes/footer.php');
-     ?>
+<?php
+include('includes/footer.php');
+?>
+
+<style>
+
+  #single_product{
+    float: left;
+    border: 1px solid #F4F6F8 ;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 7px;
+    transition: transform 1.2s;
+    margin: 30px 0 0;
+    margin-left: 4%;
+    
+}
+
+#single_product a{
+    text-decoration: none;
+    color: #000;
+
+}
+#single_product a img{
+    border-radius: 10px;
+    margin-bottom: 10px;
+
+}
+
+/* sidebar */
+#sidebar {
+    background-color: #fff; /* Màu nền trắng */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    border-radius: 10px; /* Góc bo tròn */
+    padding: 20px;
+}
+
+#sidebar hr {
+    border: none; /* Loại bỏ đường ngang */
+    border-top: 1px solid #eee; /* Tạo đường viền trên */
+    margin: 15px 0; /* Khoảng cách giữa các phần */
+}
+
+#sidebar_title {
+    font-size: 1.5em;
+    color: #c00000;
+    margin-bottom: 10px;
+}
+
+#cats, #brands {
+    list-style: none;
+    padding: 0;
+}
+
+#cats li, #brands li {
+    margin-bottom: 10px;
+}
+
+#cats a, #brands a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#cats a:hover, #brands a:hover {
+    color: #c00000;
+}
+
+</style>

@@ -48,15 +48,16 @@ if (isset($_SESSION['email'])) {
     <div class="header_wrapper">
       <div class="header_logo">
         <a href="index.php">
-          <img style="margin-left: 70px;" id="logo" src="images/ls.png">
+           <img  width="35%" src="https://jollibee.com.vn/static/version1699974795/frontend/Jollibee/default/vi_VN/images/logo.png" alt="">    
+
+          <!-- <img style="margin-left: 70px;" id="logo" src="images/ls.png"> -->
         </a>
       </div>
       <!--/.header_logo-->
       <div id="form">
         <form method="get" action="results.php" enctype="multipart/form-data">
         <input id="searchInput" type="text" name="user_query" autocomplete="off" placeholder="Tìm kiếm..." style="border-radius: 40px">
-       <input id="searchButton" type="submit" name="search" value="Search"  style="border-radius: 40px">
-
+        <input id="searchButton" type="submit" name="search" value="Search"  style="border-radius: 40px">
         </form>
       </div>
       <div class="cart">
@@ -142,7 +143,7 @@ if (isset($_SESSION['email'])) {
 
 .header_wrapper{
   width: 100%;
-  height: 55px;
+  height: 60px;
   margin: auto;
   background: #c00000;
   display: flex;
@@ -153,18 +154,18 @@ if (isset($_SESSION['email'])) {
 
 .header_logo{
     float: left;
-    width: 150px;
+    /* width: 150px; */
 }
 #cart_image{
   line-height: 45px;
   color: #fff;
   font-size: 20px;
 }
-#form{
+/* #form{
   float: left;
   width: 53%;
   padding-left: 100px;
-}
+} */
 
 #form input{
   padding: 8px;
@@ -176,7 +177,7 @@ if (isset($_SESSION['email'])) {
 }
 
 #form input[type="submit"]:hover {
-  background-color:lightpink;
+  background-color: #fff;
   cursor: pointer;
   border-radius: 4px;
   outline:none;
@@ -184,13 +185,13 @@ if (isset($_SESSION['email'])) {
 
 #form input[type="text"]:focus{
   /* width: 500px;  */
-  background-color:#FBEAFF;
+  background-color:#fff;
 }
 
 #form input[type=text]{
   width: 450px;
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid #900000;
   border-radius: 4px;
   outline:none;
   padding: 12px 14px;
@@ -201,9 +202,9 @@ if (isset($_SESSION['email'])) {
 #fonttable {
   font-family: Arial, Helvetica, sans-serif;
 }
-#id{
-  border: 1px solid;
-  border-radius: 40px 0 0 40px;
+#searchButton{
+  border: 1px solid #900000;
+  border-radius: 35px 0 0 35px;
 }
 
 

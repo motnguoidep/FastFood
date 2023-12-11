@@ -18,8 +18,8 @@
           width: 300px;
           margin-left: auto;
           margin-right: auto;
-          margin-top: 0.7em;
-          margin-bottom:3em;
+          margin-top: 5em;
+          margin-bottom:5em;
           border-radius: 10px;
           background-color: #ffff;
           padding: 1.8rem;
@@ -30,19 +30,29 @@
           text-align: center;
           font-weight: bold;
           margin: 0;
+          color: #900000;
+
         }
         .subtitle {
           text-align: center;
           font-weight: bold;
+          color: #900000;
+        }
+        .subtitle a{
+          color: #c00000;
         }
         .btn-text {
           margin: 0;
+          color: #900000;
+
         }
 
         .social-login {
           display: flex;
           justify-content: center;
           gap: 5px;
+          color: #900000;
+
         }
 
         .google-btn {
@@ -72,6 +82,7 @@
           border-bottom: 2px solid rgb(245 239 239);
           line-height: 0.1em;
           margin: 25px 0;
+          color: #900000;
         }
         .or span {
           background: #fff;
@@ -97,7 +108,7 @@
         }
 
         .cta-btn {
-          background-color: #5086BD;
+          background-color: #c00000;
           color: white;
           padding: 18px 20px;
           margin-top: 10px;
@@ -105,11 +116,13 @@
           width: 100%;
           border-radius: 10px;
           border: none;
+          font-weight: 600;
         }
 
         .forget-pass {
           text-align: center;
           display: block;
+          color: #900000;
         }
 
 </style>
