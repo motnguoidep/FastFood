@@ -19,15 +19,15 @@ if (isset($_SESSION['email'])) {
 
 ?>
 <script type="text/javascript">
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("p.total_item").text("<?php if (isset($total_item)) {
-                              echo $total_item;
-                            } else {
-                              echo "0";
-                            } ?>");
+      echo $total_item;
+    } else {
+      echo "0";
+    } ?>");
     // buy_btn
     var total_item = "<?php echo $total_item; ?>";
-    $("button#button").click(function() {
+    $("button#button").click(function () {
 
       var id = $(this).closest("a.buy_btn").attr("id");
       total_item++;
@@ -39,11 +39,11 @@ if (isset($_SESSION['email'])) {
         data: {
           id: id
         },
-        success: function(response) {
+        success: function (response) {
           // alert(response);
           console.log(response);
         },
-        error: function(response) {
+        error: function (response) {
           console.log("error");
         },
       })
@@ -86,9 +86,9 @@ if (isset($_SESSION['email'])) {
       }
       // $product_total = ceil($product_total/8);
       // echo $product_total;
-
-// lấy & hiển thị thông tin 
-      getPro($product_total);// all products
+      
+      // lấy & hiển thị thông tin 
+      getPro($product_total); // all products
       get_pro_by_cat_id(); //
       get_pro_by_brand_id();
       ?>
@@ -103,100 +103,111 @@ if (isset($_SESSION['email'])) {
 include('includes/footer.php');
 ?>
 <style>
-  
   #content_wrapper {
     width: 100%;
     margin: auto;
     position: relative;
   }
+
   #sidebar {
-    background-color: #fff; /* Màu nền trắng */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
-    border-radius: 10px; /* Góc bo tròn */
+    background-color: #fff;
+    /* Màu nền trắng */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Đổ bóng nhẹ */
+    border-radius: 10px;
+    /* Góc bo tròn */
     padding: 20px;
-}
+  }
 
-#sidebar hr {
-    border: none; /* Loại bỏ đường ngang */
-    border-top: 1px solid #eee; /* Tạo đường viền trên */
-    margin: 15px 0; /* Khoảng cách giữa các phần */
-}
+  #sidebar hr {
+    border: none;
+    /* Loại bỏ đường ngang */
+    border-top: 1px solid #eee;
+    /* Tạo đường viền trên */
+    margin: 15px 0;
+    /* Khoảng cách giữa các phần */
+  }
 
-#sidebar_title {
+  #sidebar_title {
     font-size: 1.5em;
     color: #c00000;
     margin-bottom: 10px;
-}
+  }
 
-#cats, #brands {
+  #cats,
+  #brands {
     list-style: none;
     padding: 0;
-}
+  }
 
-#cats li, #brands li {
+  #cats li,
+  #brands li {
     margin-bottom: 10px;
-}
+  }
 
-#cats a, #brands a {
+  #cats a,
+  #brands a {
     color: #333;
     text-decoration: none;
     transition: color 0.3s ease;
-}
+  }
 
-#cats a:hover, #brands a:hover {
+  #cats a:hover,
+  #brands a:hover {
     color: #c00000;
-}
+  }
 
 
-/* end sidebar */
-#content_area{
+  /* end sidebar */
+  #content_area {
     width: 70%;
     float: left;
     margin-left: 4%;
     padding-top: 30px;
-}
-#products_box{
+  }
+
+  #products_box {
     width: 1000px;
     text-align: center;
     margin-bottom: 10px;
-}
+  }
 
-#single_product{
+  #single_product {
     float: left;
-    border: 1px solid #F4F6F8 ;
+    border: 1px solid #F4F6F8;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     margin: 7px;
     transition: transform 1.2s;
-    
-}
 
-#single_product a{
+  }
+
+  #single_product a {
     text-decoration: none;
     color: #000;
     /* margin-bottom: 10px; */
 
-}
-#single_product a img{
+  }
+
+  #single_product a img {
     border-radius: 10px;
     margin-bottom: 10px;
 
 
-}
+  }
 
-#single_product b{
-  /* padding-top: 10px; */
-  color: #D53B2A;
-}
+  #single_product b {
+    /* padding-top: 10px; */
+    color: #D53B2A;
+  }
 
-/* #single_product img{
+  /* #single_product img{
     transition: transform .2s;
 } */
 
-#single_product:hover{
-  -ms-transform: scale(1.2);
-  -webkit-transform: scale(1.2);
-  transform: scale(1.02); 
-}
-
+  #single_product:hover {
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.02);
+  }
 </style>

@@ -1,6 +1,6 @@
 <style>
   .notification {
-    width: 1260;
+    /* width: 1260; */
     height: 400px;
     margin-top: 100px;
   }
@@ -42,6 +42,7 @@
   .notification_button button:hover {
     background: tomato;
   }
+
 </style>
 <!--import file header.php bên inludes vào :3-->
 <?php

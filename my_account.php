@@ -84,7 +84,8 @@ include('includes/header.php');
     <?php }?>
       
       </div><!--/.content_wrapper -->
-          <div class="content_wrapper">
+        
+    <div class="content_wrapper">
      <?php
      include('includes/footer.php');
      ?>

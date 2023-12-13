@@ -3,10 +3,11 @@ include('includes/header.php');
 ?>
 <script>
   $(document).ready(function () {
+     // Kiểm tra xem biến session 'total_item' đã được đặt hay chưa
     $("p.total_item").text("<?php if (isset($_SESSION['total_item'])) {
-      echo $_SESSION['total_item'];
+      echo $_SESSION['total_item']; // Nếu đã tồn tại, hiển thị giá trị từ session 'total_item'
     } else {
-      echo "0";
+      echo "0"; // Nếu chưa tồn tại, hiển thị giá trị mặc định là 0
     } ?>");
   })
 </script>
@@ -124,36 +125,41 @@ include('includes/header.php');
     </div> <!--end product_box-->
   </div> <!--end content_area-->
 </div><!--/.content_wrapper -->
+
 <script type="text/javascript">
   $(document).ready(function () {
+    // Đặt giá trị ban đầu cho số lượng sản phẩm trong giỏ hàng từ PHP session
     $("p.total_item").text("<?php if (isset($_SESSION['total_item'])) {
       echo $_SESSION['total_item'];
     } else {
       echo "0";
     } ?>");
-    // buy_btn
+    // Khởi tạo và cập nhật biến JavaScript 'total_item' từ PHP session
     var total_item = 0;
     total_item = "<?php if (isset($_SESSION['total_item'])) {
       echo $_SESSION['total_item'];
     } else {
       echo "0";
     } ?>";
+    // / Xử lý sự kiện khi nút "button" được click
     $("button#button").click(function () {
-
+ // Lấy giá trị id từ thẻ <a> chứa nút "button" được click
       var id = $(this).closest("a.buy_btn").attr("id");
+      // Tăng giá trị total_item và cập nhật hiển thị số lượng sản phẩm trong giỏ hàng
       total_item++;
       $("p.total_item").text(total_item);
+       // Gửi yêu cầu AJAX để thêm sản phẩm vào giỏ hàng
       $.ajax({
         method: "POST",
         url: "ajax/add_to_cart_ajax.php",
         mimeType: "multipart/form-data",
-        data: { id: id },
+        data: { id: id },// Dữ liệu gửi đi, trong trường hợp này là id của sản phẩm
         success: function (response) {
           // alert(response);
           console.log(response);
         },
         error: function (response) {
-          console.log("error");
+          console.log("error");//Log lỗi nếu có
         },
       })
     })

@@ -18,75 +18,84 @@
   </head>
 
   <?php
-include('includes/header.php');
-?>
+  include('includes/header.php');
+  ?>
 <?php
-  if(isset($_SESSION['email'])){
-      $get_user_id = "SELECT * FROM `user` where `email`='".$_SESSION['email']."';";
-      $run_user = $con->query($get_user_id);
-      $row_user = $run_user->fetch_assoc();
-      // echo $run_user['user_id'];
-      // echo($row_user['id']);
-      $get_pro = "SELECT * FROM `cart` where `user_id` = '".$row_user['id']."' order by `cart_id` DESC";
-      $run_pro = $con->query($get_pro);
-      
-      $product = [];
-      if($run_pro->num_rows>0){
-        while($row_pro = $run_pro->fetch_assoc()){
-            $product[]=$row_pro;
-        }
-      }
-      $soSanPham =  count($product);
-      
-      echo("<script> var html = '';var html2='';</script>");
-      $total = 0;
-      foreach($product as $value){
-        $sql = "SELECT * FROM `products` where `product_id` = '".$value['product_id']."'";
-        $run_pro = $con->query($sql);
-        $row_pro = $run_pro->fetch_assoc();
-        
-        $sql1 = "SELECT * FROM `categories` where `cat_id` = '".$row_pro['cat_id']."'";
-        $run_cat = $con->query($sql1);
-        $row_cat = $run_cat->fetch_assoc();
-        
-        $total_price = ((int)($row_pro['product_price'])*(int)($value['quantity']));
-        $total+=((int)($row_pro['product_price'])*(int)($value['quantity']));
+// Kiểm tra xem người dùng đã đăng nhập hay chưa
+if (isset($_SESSION['email'])) {
+  // Lấy thông tin người dùng từ cơ sở dữ liệu dựa trên email
+  $get_user_id = "SELECT * FROM `user` where `email`='" . $_SESSION['email'] . "';";
+  $run_user = $con->query($get_user_id);
+  $row_user = $run_user->fetch_assoc();
+  // echo $run_user['user_id'];
+  // echo($row_user['id']);
+  // Lấy các mục trong giỏ hàng của người dùng dựa trên user_id, sắp xếp theo cart_id giảm dần
+  $get_pro = "SELECT * FROM `cart` where `user_id` = '" . $row_user['id'] . "' order by `cart_id` DESC";
+  $run_pro = $con->query($get_pro);
 
-          ?>
-          <script>
-              
-                    
-                    html2 += '<div class="row main1 align-items-center item1" id = "<?php echo $value['cart_id']; ?>">'+
-                                '<div class="col-2" style="margin-left: 10px;"><img class="img-fluid" src="admin_area/product_images/<?php echo $row_pro['product_image'] ?>"></div>'+
-                             '<div class="col">'+
-                                '<div class="row text-muted"><?php echo $row_cat['cat_title']; ?></div>'+
-                                '<div class="row"><?php echo $value['product_title'] ?></div>'+
-                              '</div>'+
-                             '<div class="col">'+
-                                  ' <a href="#" class="quantity_down">-</a>'+
-                                      '<a href="#" class="border quantity_sing"><?php echo $value['quantity'] ?></a>'+
-                                  '<a href="#"  class="quantity_up">+</a>'+
-                              '</div>'+
-
-                            '<input type="hidden" class="price_sing" value="<?php  echo $row_pro['product_price'];  ?>">'+
-
-                            '<input type="hidden" class="product_id" value="<?php  echo $value['product_id'];  ?>">'+
-                             '<div class="col">'+
-                                        '<span class="price_total"><?php echo $total_price; ?></span>đ'+ 
-                                        '<span class="close">&#10005;</span></div>'+
-                            
-                             '</div>';
-
-          </script>
-          <?php
-      }
-      ?>
-        <script type="text/javascript">
-          $(document).ready(function(){
-    })
-</script> 
-      <?php
+  $product = [];
+   // Kiểm tra xem có các mục trong giỏ hàng hay không
+  if ($run_pro->num_rows > 0) {
+    // Lưu trữ thông tin của từng mục trong giỏ hàng vào mảng $product
+    while ($row_pro = $run_pro->fetch_assoc()) {
+      $product[] = $row_pro;
+    }
   }
+   // Đếm số sản phẩm trong giỏ hàng
+  $soSanPham = count($product);
+  // Khởi tạo biến chuỗi HTML để chứa mã JavaScript
+  echo ("<script> var html = '';var html2='';</script>");
+  // Khởi tạo biến tổng giá trị đơn hàng
+  $total = 0;
+  // Duyệt qua từng mục sản phẩm trong giỏ hàng
+  foreach ($product as $value) {
+    // Truy vấn thông tin sản phẩm từ bảng products dựa trên product_id
+    $sql = "SELECT * FROM `products` where `product_id` = '" . $value['product_id'] . "'";
+    $run_pro = $con->query($sql);
+    $row_pro = $run_pro->fetch_assoc();
+
+    // Truy vấn thông tin danh mục từ bảng categories dựa trên cat_id của sản phẩm
+    $sql1 = "SELECT * FROM `categories` where `cat_id` = '" . $row_pro['cat_id'] . "'";
+    $run_cat = $con->query($sql1);
+    $row_cat = $run_cat->fetch_assoc();
+    // Tính giá tổng của từng sản phẩm trong giỏ hàng và tổng giá trị đơn hàng
+    $total_price = ((int) ($row_pro['product_price']) * (int) ($value['quantity']));
+    $total += ((int) ($row_pro['product_price']) * (int) ($value['quantity']));
+
+    ?>
+    <!-- Chèn mã JavaScript vào chuỗi HTML để hiển thị thông tin sản phẩm -->
+    <script>
+    html2 += '<div class="row main1 align-items-center item1" id = "<?php echo $value['cart_id']; ?>">' +
+            '<div class="col-2" style="margin-left: 10px;"><img class="img-fluid" src="admin_area/product_images/<?php echo $row_pro['product_image'] ?>"></div>' +
+            '<div class="col">' +
+            '<div class="row text-muted"><?php echo $row_cat['cat_title']; ?></div>' +
+            '<div class="row"><?php echo $value['product_title'] ?></div>' +
+            '</div>' +
+            '<div class="col">' +
+            ' <a href="#" class="quantity_down">-</a>' +
+            '<a href="#" class="border quantity_sing"><?php echo $value['quantity'] ?></a>' +
+            '<a href="#"  class="quantity_up">+</a>' +
+            '</div>' +
+
+            '<input type="hidden" class="price_sing" value="<?php echo $row_pro['product_price']; ?>">' +
+
+            '<input type="hidden" class="product_id" value="<?php echo $value['product_id']; ?>">' +
+            '<div class="col">' +
+            '<span class="price_total"><?php echo $total_price; ?></span>đ' +
+            '<span class="close">&#10005;</span></div>' +
+
+            '</div>';
+
+        </script>
+                  <?php
+  }
+  ?>
+            <script type="text/javascript">
+              $(document).ready(function(){
+        })
+    </script> 
+          <?php
+}
 ?>
 <body>
    <div class="content_wrapper">
@@ -109,7 +118,7 @@ include('includes/header.php');
             <hr>
           </ul>
       </div>
-
+    
 <div class="bd1">
     <div class="card1">
         <div class="row">
@@ -171,7 +180,11 @@ include('includes/header.php');
     //1 su kien co ban cua jquery
       $(document).ready(function(){ 
         //lay tu ben index
-        $("p.total_item").text("<?php if(isset($_SESSION['total_item'])){echo $_SESSION['total_item']; }else{echo "0" ;} ?>");
+        $("p.total_item").text("<?php if (isset($_SESSION['total_item'])) {
+          echo $_SESSION['total_item'];
+        } else {
+          echo "0";
+        } ?>");
         // $("table.table").find("tbody").append(html);
         $("div.content_1").append(html2);   
 
@@ -310,23 +323,23 @@ include('includes/header.php');
 </script> 
 
 <?php
-    if(isset($_POST['check_out'])){
-        $sql = "SELECT * FROM `user` where `email`='".$_SESSION['email']."'";
-        $run_user = $con->query($sql);
-        $user = $run_user->fetch_assoc();
-        
-        $sql2 ="SELECT * FROM `products`";
-        $run_product = $con->query($sql2);
+if (isset($_POST['check_out'])) {
+  $sql = "SELECT * FROM `user` where `email`='" . $_SESSION['email'] . "'";
+  $run_user = $con->query($sql);
+  $user = $run_user->fetch_assoc();
 
-        if($run_product->num_rows > 0){
-            while($run = $run_product->fetch_assoc()){
+  $sql2 = "SELECT * FROM `products`";
+  $run_product = $con->query($sql2);
 
-            }
-        }
+  if ($run_product->num_rows > 0) {
+    while ($run = $run_product->fetch_assoc()) {
 
-        $sql1 = "DELETE FROM `cart` where `user_id`='".$user['id']."'";   
-        if($con->query($sql1)){
-            echo "<script>
+    }
+  }
+
+  $sql1 = "DELETE FROM `cart` where `user_id`='" . $user['id'] . "'";
+  if ($con->query($sql1)) {
+    echo "<script>
                 $(document).ready(function(){
                     
                     $('span.total_price_bf').text('0');
@@ -340,11 +353,11 @@ include('includes/header.php');
                     })
             </script>";
 
-        }
-        
+  }
 
-    }
-    
+
+}
+
 ?>
 <script type="text/javascript">
     // $(document).ready(function(){

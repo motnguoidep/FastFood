@@ -297,18 +297,20 @@ function get_pro_by_brand_id()
 ?>
 <style>
   #button {
-    background-color: #c00000; /* Đặt màu nền của nút */
-    color: #fff; /* Đặt màu chữ của nút */
+    background-color: #c00000;
+    /* Đặt màu nền của nút */
+    color: #fff;
+    /* Đặt màu chữ của nút */
     /* Các thuộc tính CSS khác tùy thuộc vào nhu cầu thiết kế của bạn */
     /* padding: 10px 20px; */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
+  }
 
-#button:hover {
+  #button:hover {
     /* Các thuộc tính CSS khi nút được di chuột qua */
-    background-color: #900000; /* Màu nền khi di chuột qua */
-}
-
+    background-color: #900000;
+    /* Màu nền khi di chuột qua */
+  }
 </style>

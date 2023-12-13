@@ -215,6 +215,7 @@
 
   // }
   ?>
+      </div>
   <style>
     body {
       background-color: rgb(228, 229, 247);

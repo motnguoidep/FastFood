@@ -328,11 +328,14 @@ time, mark, audio, video {
 
 
 
-.skew-menu a{
+/* .skew-menu a{
   text-decoration: none;
   color: #222;
-  /* display: block; */
-}
+  display: block;
+} */
+/* .skew-menu li:hover{
+  color: #000;
+} */
 /* .skew-menu a:first-child{
     border-radius:7px 0 0 7px;
   }
